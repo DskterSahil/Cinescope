@@ -39,7 +39,7 @@ export default function InDetail() {
   async function fetchAllEpisodes(id, season) {
     try {
       const response = await axios.get(
-        `http://localhost:3000/fetchAllEpisodes/${id}/${season}`
+        `https://cinescope-ncpj.onrender.com/fetchAllEpisodes/${id}/${season}`
       );
       setSeasonsDetails((prev) => ({
         ...prev,

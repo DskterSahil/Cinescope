@@ -26,9 +26,9 @@ export function VideoEmbed({ id, type, season, episode, className }) {
       try {
         let url = "";
         if (type === "tv") {
-          url = `http://localhost:3000/watch/${type}/${id}/season/${season}/episode/${episode}`;
+          url = `https://cinescope-ncpj.onrender.com/watch/${type}/${id}/season/${season}/episode/${episode}`;
         } else {
-          url = `http://localhost:3000/watch/${type}/${id}`;
+          url = `https://cinescope-ncpj.onrender.com/watch/${type}/${id}`;
         }
 
         const response = await axios.get(url);
