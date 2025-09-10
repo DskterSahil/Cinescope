@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './MovieCard.css';
+import { useNavigate} from 'react-router';
 import HeaderContext from '../context/HeaderContext';
 // import BackdropSlider from '../detailPage/BackdropSlider';
 import MovieCardSlider from '../utils/MoiveCardSlider';
@@ -7,6 +8,7 @@ import MovieCardSlider from '../utils/MoiveCardSlider';
 const MovieCard = () => {
   const { allWeekRecomm = [] } = useContext(HeaderContext);
   const [currentIndex, setCurrentIndex] = useState(0);
+    const navigate = useNavigate()
 
   useEffect(() => {
     if (!allWeekRecomm.length) return;
@@ -21,15 +23,19 @@ const MovieCard = () => {
   if (!allWeekRecomm.length) return null;
 
   const currentMovie = allWeekRecomm[currentIndex];
+  const details = currentMovie
 
+  console.log(details)
   const handleWatch = () => {
     console.log("Watch ID:", currentMovie.id);
+        navigate(`/infoabout/` , {state: {data : details}  })
+    
     // navigate or open modal, etc.
   };
 
   const handleDetail = () => {
     console.log("Detail ID:", currentMovie.id);
-    // navigate(`/detail/movie/${currentMovie.id}`)
+    navigate(`/detail/movie/${currentMovie.id}`)
   };
 
   return (

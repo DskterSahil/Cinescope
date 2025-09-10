@@ -133,6 +133,54 @@ app.get("/info/:type/:id", async (req, res) => {
     }
 });
 
+app.get("/fetchAllEpisodes/:id/:season", async (req, res) => {
+    try {
+        
+        const { id, season } = req.params;
+        const url = `/tv/${id}/season/${season}`;
+
+        const response = await api.get(url, { retry: 3 });
+        const episodesTitle = response.data.episodes.map(episode => ({
+            name: episode.name,
+            episode_number: episode.episode_number,
+            season_number: episode.season_number,
+        }));
+
+        res.json(episodesTitle);
+    } catch (err) {
+        console.error("Error fetching episodes:", err);
+        res.status(500).json({ error: "Failed to fetch episodes.", details: err.message });
+    }
+});
+
+
+app.get("/watch/:type/:id", async (req, res)=> {
+    try{
+        const id = req.params.id
+        const type = req.params.type
+        const url = [`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1`, `https://vidlink.pro/${type}/${id}`, `https://vidsrc.net/embed/${type}/${id}/`]
+        
+        res.json(url)
+    } catch (err) {
+        console.error("Error fetching watch link:", err);
+        res.status(500).json({ error: "Failed to fetch watch link.", details: err.message });
+    }
+})
+
+app.get("/watch/:type/:id/season/:season/episode/:episode", async (req, res)=> {
+    try{
+        const id = req.params.id
+        const type = req.params.type
+        const season = req.params.season
+        const episode = req.params.episode
+        const url = [`https://multiembed.mov/directstream.php?video_id=${id}&tmdb=1&s=${season}&e=${episode}`, `https://vidsrc.net/embed/tv/${id}/${season}/${episode}`]
+        res.json(url)
+    }
+    catch(err) {
+        console.error("Error fetching watch link:", err);
+        res.status(500).json({ error: "Failed to fetch watch link.", details: err.message });
+    }
+})
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

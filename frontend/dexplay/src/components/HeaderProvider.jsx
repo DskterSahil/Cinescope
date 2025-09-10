@@ -15,6 +15,7 @@ export default function HeaderProvider() {
         setError(err.message);
       });
   }, []);
+  console.log(movies)
 
   if (error) return <div>Error: {error}</div>;
   if (!movies) return <div>Loading...</div>;

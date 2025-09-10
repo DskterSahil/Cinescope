@@ -1,118 +1,230 @@
 .indetail-wrapper {
-    margin-left: 60px;
-    box-sizing: border-box;
-    padding: 30px;
-    display: flex;
-    gap: 30px;
-    height: 100vh;
-    position: relative;
+  margin-left: 60px;
+  box-sizing: border-box;
+  padding: 30px;
+  display: flex;
+  gap: 30px;
+  height: 100vh;
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
 
+
+
 .indetail_left-container {
-    width: 350px;
-    flex-shrink: 0;
-    position: fixed;
-    top: 30px;
-    left: 90px;
+  width: 350px;
+  flex-shrink: 0;
 }
 
 .indetail_left-content {
-    background-color: black;
-    padding: 15px;
-    border-radius: 15px;
-    
+  background-color: black;
+  padding: 15px;
+  border-radius: 15px;
+  margin-top: 10px;
 }
 
 .indetail_left-container .img_banner {
-    width: 350px;
-    height: 500px;
+  width: 350px;
+  height: 500px;
 }
 
-.indetail_left-container .img_banner img{
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
+.indetail_left-container .img_banner img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-.indetail_left-content {
-    margin-top: 10px;
+.indetail_left-content h2 {
+  font-size: 1.9rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 15px;
 }
 
-.indetail_left-content h2{
-    font-size: 1.9rem;
-    font-weight: 600;
-    color: var(--text-light);
-    margin-bottom: 10px;
+.indetail_overview {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  line-height: 1.4;
+  color: var(--text-light);
 }
 
-.indetail_overview{
-    
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    line-height: 1.2;
-
-    
+/* --- Seasons & Episodes --- */
+.seasons-container {
+  margin-top: 15px;
 }
 
-.indetail_left-container .buttons{
-    display: flex;
-    gap: 10px;
+.seasons-container h3 {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
 }
 
-.indetail_left-container .buttons button{
-    padding: 6px 15px;
-    border: none;
-    border-radius: 3px;
-    color: black;
-    background-color: #FFCC00;
-    cursor: pointer;
-
-    
+.season-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 15px;
 }
 
+.season-btn {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
 
+.season-btn:hover {
+  background-color: #555;
+}
 
+.season-btn.active {
+  background-color: #ffcc00;
+  color: black;
+  font-weight: 600;
+}
+
+.episodes-dropdown {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.episodes-dropdown label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+.episodes-dropdown select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #222;
+  color: var(--text-light);
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+/* --- Right container --- */
 .indetail_right-container {
-    flex: 1;
-    max-width: calc(100% - 380px);
-    margin-left: 380px;
-    height: calc(100vh - 60px);
-    overflow-y: auto;
-    padding-right: 20px;
-    overflow-y: visible;
+  flex: 1;
+  max-width: calc(100% - 380px);
+  height: calc(100vh - 120px);
+  overflow-y: auto;
+  scroll-behavior: smooth;;
+  padding-right: 10px;
+}
+
+/* --- Trailer Section --- */
+/* --- Trailer Section --- */
+.trailer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 .trailer-container {
-    padding-bottom: 20px;
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
-.video-container {
-    position: relative;
-    padding-bottom: 46.25%;
-    height: 0;
-    overflow: hidden;
+/* Maintain 16:9 aspect ratio */
+/* .trailer-container::before {
+  content: "";
+  display: block;
+  padding-top: 0;
+} */
+
+.trailer_heading, .videoEmbed_heading {
+    color: var(--text-light);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-left: 95px
 }
 
+
+
+.trailer-container iframe,
+.youtube-player,
 .youtube-iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
 }
 
+/* --- Server Buttons Styling --- */
+.server-buttons {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 10; /* ✅ stay above video */
+}
+
+.server-buttons button {
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.server-buttons button:hover {
+  background: rgba(255, 204, 0, 0.9);
+  color: black;
+}
+
+
+/* Maintain 16:9 aspect ratio */
+.trailer-container::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%;
+}
+
+.trailer-container iframe,
+.youtube-player,
+.youtube-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 12px;
+}
+
+/* --- OTT Platforms --- */
 .ott_platform_avail {
-    display: flex;
-    align-items: space-between;
-    gap: 10px;
-    margin-top: 20px;
-    text-align: center;
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .ott_platform_avail img {
-    width: 60px;
-    height: 60px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.ott_platform_avail img:hover {
+  transform: scale(1.1);
 }

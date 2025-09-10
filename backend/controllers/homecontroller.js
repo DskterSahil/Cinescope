@@ -110,7 +110,8 @@ const fetchAllWeekInternal = async () => {
         overview: item.overview,
         release_date: item.release_date || item.first_air_date,
         backdrop: `https://image.tmdb.org/t/p/original/${item.backdrop_path}`,
-        media_type: item.media_type || 'movie'
+        media_type: item.media_type || 'movie',
+        poster_path: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
     }));
 };
 

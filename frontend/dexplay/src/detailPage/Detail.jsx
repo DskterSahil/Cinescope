@@ -26,12 +26,15 @@ export default function Detail() {
 
     const { type ,id } = useParams();
     
+    
     React.useEffect(() => {
     async function fetchData() {
         try {
             const detailsRes = await fetch(`https://cinescope-ncpj.onrender.com/detail/${type}/${id}`);
             const detailsData = await detailsRes.json();
-            setDetails(detailsData);
+            const updatedDetails = { ...detailsData, media_type: type, id: id }; // Add media_type and id to details
+            console.log(updatedDetails)
+            setDetails(updatedDetails);
             setLoading(false);
 
             if (token) {
@@ -74,7 +77,7 @@ export default function Detail() {
 
     
     
-console.log(year)
+// console.log(year)
 
    async function handleAddWatchlist(){
 
@@ -126,13 +129,15 @@ console.log(year)
 
 
     }
+
+  
         
-    
+    console.log(details)
     function handleDetail(){
         navigate(`/infoabout/` , {state: {data : details}  })
-        
-    }   
-    
+
+    }
+
     return (
         <div className="detail-wrapper">
             <section className="left_part-container">
@@ -160,10 +165,10 @@ console.log(year)
                                     className={`watch-btn ${isWatchlisted ? 'added' : ''}`}
                                     disabled={isWatchlisted}
                                 >
-                                    {isWatchlisted ? "Added" : "Watch"}
+                                    {isWatchlisted ? "Added" : "Favorite"}
                                 </button>
 
-                            <button onClick={handleDetail} className="detail-btn">Detail</button>
+                            <button onClick={handleDetail} className="detail-btn">Watch</button>
                         </div>
                     </div>
 
